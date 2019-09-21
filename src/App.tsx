@@ -7,8 +7,10 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <header className="App-header">NotiConn</header>
-      <TopicForm />
-      <TopicList />
+      <div className="App-body">
+        <TopicForm />
+        <TopicList />
+      </div>
     </div>
   );
 };
