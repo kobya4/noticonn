@@ -11,5 +11,6 @@
   "browser_action": {
     "default_popup": "index.html"
   },
-  "content_security_policy": "script-src 'self' 'sha256-NSavoSk+nr5ejB5ceg33r51sAOFnAMCh4ryAshv3z3c='; object-src 'self'"
+  "content_security_policy": "script-src 'self' 'sha256-NSavoSk+nr5ejB5ceg33r51sAOFnAMCh4ryAshv3z3c='; object-src 'self'",
+  "permissions": ["storage", "alarms"]
 }
