@@ -7,12 +7,22 @@ const Topic: React.FC = () => {
     localStorage.getItem(TOPICS_STORAGE_KEY) || ""
   );
 
-  return (
-    <div className="Topic">
-      <span className="tag">
+  const topicTag = (
+    topic
+    ?
+      <span className="tag topic-tag">
         {`# ${topic}`}
         <button className="delete is-small"></button>
       </span>
+    :
+      <p className="topic-notfound">
+        トピックが登録されていません
+      </p>
+  );
+
+  return (
+    <div className="Topic">
+      {topicTag}
     </div>
   );
 };
