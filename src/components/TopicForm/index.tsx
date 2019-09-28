@@ -1,24 +1,15 @@
 import React, { useState } from "react";
-import { TOPICS_STORAGE_KEY } from "../../constants";
 import "./style.css";
 
-interface Topics {
-  [props: string]: any;
+interface Props {
+  onClickAdd: Function;
 }
 
-const TopicForm: React.FC = () => {
+const TopicForm: React.FC<Props> = props => {
   const [value, setValue] = useState<string>("");
-  const [topic, setTopic] = useState<Topics>(
-    JSON.parse(localStorage.getItem(TOPICS_STORAGE_KEY) || "{}")
-  );
 
   const onChangeInput = (value: string) => {
     setValue(value);
-  };
-
-  const onClickAdd = () => {
-    topic[`${value}`] = value;
-    localStorage.setItem(TOPICS_STORAGE_KEY, JSON.stringify(topic));
   };
 
   return (
@@ -30,10 +21,17 @@ const TopicForm: React.FC = () => {
             className="input"
             type="text"
             placeholder="興味のあるトピックを入力"
+            value={value}
           />
         </div>
         <div className="control">
-          <a onClick={() => onClickAdd()} className="button is-primary">
+          <a
+            onClick={() => {
+              props.onClickAdd(value);
+              setValue("");
+            }}
+            className="button is-primary"
+          >
             Add
           </a>
         </div>
