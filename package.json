@@ -7,14 +7,16 @@
     "@types/node": "12.7.5",
     "@types/react": "16.9.2",
     "@types/react-dom": "16.9.0",
+    "awesome-typescript-loader": "^5.2.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-scripts": "3.1.2",
-    "typescript": "3.6.3"
+    "typescript": "3.6.3",
+    "webpack-cli": "^3.3.9"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "NODE_ENV=production yarn webpack --config webpack.config.js && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
