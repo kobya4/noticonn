@@ -37,7 +37,7 @@ const TopicForm: React.FC<Props> = props => {
           />
         </div>
         <div className="control">
-          <a
+          <button
             onClick={() => {
               props.onClickAdd(value);
               setValue("");
@@ -45,7 +45,7 @@ const TopicForm: React.FC<Props> = props => {
             className="button"
           >
             Add
-          </a>
+          </button>
         </div>
       </div>
     </div>
