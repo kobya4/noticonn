@@ -16,7 +16,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "NODE_ENV=production yarn webpack --config webpack.config.js && react-scripts build",
+    "build": "react-scripts build && NODE_ENV=production yarn webpack --config webpack.config.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
