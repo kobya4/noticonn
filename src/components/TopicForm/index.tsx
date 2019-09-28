@@ -12,11 +12,19 @@ const TopicForm: React.FC<Props> = props => {
     setValue(value);
   };
 
+  const onKeyDown = (e: React.KeyboardEvent) => {
+    if (e.keyCode === 13) {
+      props.onClickAdd(value);
+      setValue("");
+    }
+  };
+
   return (
     <div className="TopicForm">
       <div className="field is-grouped">
         <div className="control is-expanded">
           <input
+            onKeyDown={e => onKeyDown(e)}
             onChange={e => onChangeInput(e.target.value)}
             className="input"
             type="text"
