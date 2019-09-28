@@ -2,17 +2,23 @@ import React, { useState } from "react";
 import { TOPICS_STORAGE_KEY } from "../../constants";
 import "./style.css";
 
+interface Topics {
+  [props: string]: any;
+}
+
 const TopicForm: React.FC = () => {
-  const [topic, setTopic] = useState<string>(
-    localStorage.getItem(TOPICS_STORAGE_KEY) || ""
+  const [value, setValue] = useState<string>("");
+  const [topic, setTopic] = useState<Topics>(
+    JSON.parse(localStorage.getItem(TOPICS_STORAGE_KEY) || "{}")
   );
 
   const onChangeInput = (value: string) => {
-    setTopic(value);
+    setValue(value);
   };
 
   const onClickAdd = () => {
-    localStorage.setItem(TOPICS_STORAGE_KEY, topic);
+    topic[`${value}`] = value;
+    localStorage.setItem(TOPICS_STORAGE_KEY, JSON.stringify(topic));
   };
 
   return (

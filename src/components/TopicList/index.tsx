@@ -4,12 +4,20 @@ import "./style.css";
 import { TOPICS_STORAGE_KEY } from "../../constants";
 
 const TopicList: React.FC = () => {
-  const [topic, setTopic] = useState<string>(
-    localStorage.getItem(TOPICS_STORAGE_KEY) || ""
+  const [topic, setTopic] = useState<object>(
+    JSON.parse(localStorage.getItem(TOPICS_STORAGE_KEY) || "{}")
   );
-
-  const topics = topic ? (
-    <Topic topic={topic} />
+  const topicKeys = Object.keys(topic);
+  const topics = topicKeys.length ? (
+    <ul>
+      {topicKeys.map(key => {
+        return (
+          <li>
+            <Topic topic={key} />
+          </li>
+        );
+      })}
+    </ul>
   ) : (
     <p className="topic-notfound">トピックが登録されていません</p>
   );
