@@ -13,10 +13,19 @@ const App: React.FC = () => {
     JSON.parse(localStorage.getItem(TOPICS_STORAGE_KEY) || "{}")
   );
 
+  const validateValue = (value: string): boolean => {
+    if (value.trim()) {
+      return true;
+    }
+    return false;
+  };
+
   const onClickAdd = (value: string) => {
-    topics[value] = value;
-    setTopic({ ...topics });
-    localStorage.setItem(TOPICS_STORAGE_KEY, JSON.stringify(topics));
+    if (validateValue(value)) {
+      topics[value] = value;
+      setTopic({ ...topics });
+      localStorage.setItem(TOPICS_STORAGE_KEY, JSON.stringify(topics));
+    }
   };
 
   const onClickDelete = (topic: string) => {
