@@ -15,13 +15,15 @@ const App: React.FC = () => {
   );
 
   const validateValue = (value: string): boolean => {
-    if (value.trim()) {
+    if (value) {
       return true;
     }
     return false;
   };
 
   const onClickAdd = (value: string) => {
+    value = value.trim();
+
     if (!validateValue(value)) {
       return;
     }
