@@ -38,7 +38,7 @@ const TopicForm: React.FC<Props> = props => {
               props.onClickAdd(value);
               setValue("");
             }}
-            className="button is-primary"
+            className="button"
           >
             Add
           </a>
