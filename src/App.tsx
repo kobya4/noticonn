@@ -16,7 +16,6 @@ const App: React.FC = () => {
   const onClickAdd = (value: string) => {
     topics[value] = value;
     setTopic({ ...topics });
-    console.warn(topics);
     localStorage.setItem(TOPICS_STORAGE_KEY, JSON.stringify(topics));
   };
 
@@ -30,7 +29,6 @@ const App: React.FC = () => {
     <div className="App">
       <header className="App-header">NotiConn</header>
       <div className="App-body">
-        {console.warn(topics)}
         <TopicList
           topicKeys={Object.keys(topics)}
           onClickDelete={onClickDelete}
