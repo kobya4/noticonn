@@ -1,30 +1,19 @@
-import React, { useState } from "react";
-import { TOPICS_STORAGE_KEY } from "../../constants";
+import React from "react";
 import "./style.css";
 
-const Topic: React.FC = () => {
-  const [topic, setTopic] = useState<string>(
-    localStorage.getItem(TOPICS_STORAGE_KEY) || ""
-  );
+interface Props {
+  topic: string;
+}
 
+const Topic: React.FC<Props> = props => {
   const topicTag = (
-    topic
-    ?
-      <span className="tag topic-tag">
-        {`# ${topic}`}
-        <button className="delete is-small"></button>
-      </span>
-    :
-      <p className="topic-notfound">
-        トピックが登録されていません
-      </p>
+    <span className="tag topic-tag">
+      {`# ${props.topic}`}
+      <button className="delete is-small"></button>
+    </span>
   );
 
-  return (
-    <div className="Topic">
-      {topicTag}
-    </div>
-  );
+  return <div className="Topic">{topicTag}</div>;
 };
 
 export default Topic;

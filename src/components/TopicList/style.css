@@ -1,3 +1,7 @@
 .TopicList {
   padding-top: 8px;
 }
+
+.topic-notfound {
+  font-size: 12px;
+}
