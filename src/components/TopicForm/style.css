@@ -3,6 +3,12 @@
   width: 100%;
 }
 
+.error-message {
+  padding-bottom: 4px;
+  color: red;
+  font-size: 12px;
+}
+
 .button {
   color: #fefefe;
   background-color: #e63946;

@@ -9,6 +9,7 @@ interface Topics {
 }
 
 const App: React.FC = () => {
+  const [message, setMessage] = useState<string>("");
   const [topics, setTopic] = useState<Topics>(
     JSON.parse(localStorage.getItem(TOPICS_STORAGE_KEY) || "{}")
   );
@@ -21,17 +22,28 @@ const App: React.FC = () => {
   };
 
   const onClickAdd = (value: string) => {
-    if (validateValue(value)) {
-      topics[value] = value;
-      setTopic({ ...topics });
-      localStorage.setItem(TOPICS_STORAGE_KEY, JSON.stringify(topics));
+    if (!validateValue(value)) {
+      return;
     }
+    if (topics[value]) {
+      setMessage("登録済みのトピックです");
+      return;
+    }
+
+    topics[value] = value;
+    setTopic({ ...topics });
+    localStorage.setItem(TOPICS_STORAGE_KEY, JSON.stringify(topics));
+  };
+
+  const clearMessage = () => {
+    setMessage("");
   };
 
   const onClickDelete = (topic: string) => {
     delete topics[topic];
     setTopic({ ...topics });
     localStorage.setItem(TOPICS_STORAGE_KEY, JSON.stringify(topics));
+    clearMessage();
   };
 
   return (
@@ -42,7 +54,11 @@ const App: React.FC = () => {
           topicKeys={Object.keys(topics)}
           onClickDelete={onClickDelete}
         />
-        <TopicForm onClickAdd={onClickAdd} />
+        <TopicForm
+          onClickAdd={onClickAdd}
+          message={message}
+          clearMessage={clearMessage}
+        />
       </div>
     </div>
   );

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./style.css";
 
 interface Props {
+  message: string;
+  clearMessage: Function;
   onClickAdd: Function;
 }
 
@@ -10,6 +12,7 @@ const TopicForm: React.FC<Props> = props => {
 
   const onChangeInput = (value: string) => {
     setValue(value);
+    props.clearMessage();
   };
 
   const onKeyDown = (e: React.KeyboardEvent) => {
@@ -21,6 +24,7 @@ const TopicForm: React.FC<Props> = props => {
 
   return (
     <div className="TopicForm">
+      <p className="error-message">{props.message}</p>
       <div className="field has-addons">
         <div className="control is-expanded">
           <input
