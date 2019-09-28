@@ -9,15 +9,6 @@
   font-size: 12px;
 }
 
-.button {
-  color: #fefefe;
-  background-color: #e63946;
-}
-
 input:focus {
   outline: none;
-}
-
-.button:hover {
-  color: #fefefe;
 }
