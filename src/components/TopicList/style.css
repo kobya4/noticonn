@@ -1,9 +1,12 @@
 .TopicList {
+  display: flex;
+  flex-wrap: wrap;
   max-height: 280px;
-  overflow: scroll;
+  overflow-y: scroll;
   padding: 0px 0px 8px 0px;
 }
 
 .topic-notfound {
   font-size: 14px;
+  padding: 0px 0px 8px 0px;
 }

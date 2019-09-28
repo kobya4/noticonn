@@ -8,7 +8,7 @@ interface Props {
 
 const Topic: React.FC<Props> = props => {
   const topicTag = (
-    <span className="tag topic-tag">
+    <span className="tag is-light topic-tag">
       {`# ${props.topic}`}
       <button
         className="delete is-small"
