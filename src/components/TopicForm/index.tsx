@@ -21,7 +21,7 @@ const TopicForm: React.FC<Props> = props => {
 
   return (
     <div className="TopicForm">
-      <div className="field is-grouped">
+      <div className="field has-addons">
         <div className="control is-expanded">
           <input
             onKeyDown={e => onKeyDown(e)}
