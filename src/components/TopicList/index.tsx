@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import Topic from "../Topic";
 import "./style.css";
-import { TOPICS_STORAGE_KEY } from "../../constants";
 
-const TopicList: React.FC = () => {
-  const [topic, setTopic] = useState<object>(
-    JSON.parse(localStorage.getItem(TOPICS_STORAGE_KEY) || "{}")
-  );
-  const topicKeys = Object.keys(topic);
+interface Props {
+  topics: object;
+}
+
+const TopicList: React.FC<Props> = props => {
+  const topicKeys = Object.keys(props.topics);
   const topics = topicKeys.length ? (
     <ul>
       {topicKeys.map(key => {
