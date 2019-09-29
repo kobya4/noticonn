@@ -3,20 +3,22 @@ import axios from "axios";
 import qs from "qs";
 
 type Event = {
-  id: number;
   title: string;
-  author: string;
   url: string;
+  owner: string;
+  place: { lon: number; lat: number };
 };
 
-type MockResponse = Array<Event>;
+type NotiConnAPIResponse = {
+  message: Array<Event>;
+};
 
 const pushNotification = (event: Event) => {
   const options = {
     iconUrl: "icon128.png",
     type: "basic",
-    title: `NotiConn | ${event.title}`,
-    message: event.url
+    title: `NotiConn`,
+    message: `<Topic>に関連するイベントが公開されました\n${event.title} by ${event.owner}\n${event.url}`
   };
 
   chrome.notifications.create(event.url, options);
@@ -24,7 +26,7 @@ const pushNotification = (event: Event) => {
 
 const fetchEvents = async (topics: string[]) => {
   await axios
-    .get<MockResponse>(`${API_BASE_URL}/posts`, {
+    .get<NotiConnAPIResponse>(`${API_BASE_URL}/events`, {
       params: { topics },
       paramsSerializer: params => {
         return qs.stringify(params, { arrayFormat: "repeat" });
@@ -32,17 +34,19 @@ const fetchEvents = async (topics: string[]) => {
     })
     .then(response => {
       const { data: events } = response;
-      events.forEach(event => {
+      events.message.forEach(event => {
         pushNotification(event);
       });
     });
 };
 
 const main = () => {
-  const periodInMinutes = 1;
+  // UTCの 1970/01/01 00:05:00 基準
+  const when = new Date(Date.UTC(70, 1)).setHours(0, 5, 0, 0);
+  const periodInMinutes = 10;
   const alarmName = "fetchEvents";
 
-  chrome.alarms.create(alarmName, { periodInMinutes });
+  chrome.alarms.create(alarmName, { when, periodInMinutes });
 
   chrome.alarms.onAlarm.addListener(alarm => {
     if (alarm.name === alarmName) {
