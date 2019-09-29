@@ -1,5 +1,6 @@
 import { API_BASE_URL, TOPICS_STORAGE_KEY } from "./constants";
 import axios from "axios";
+import qs from "qs";
 
 type Event = {
   id: number;
@@ -23,7 +24,12 @@ const pushNotification = (event: Event) => {
 
 const fetchEvents = async (topics: string[]) => {
   await axios
-    .get<MockResponse>(`${API_BASE_URL}/posts`, { params: { topics } })
+    .get<MockResponse>(`${API_BASE_URL}/posts`, {
+      params: { topics },
+      paramsSerializer: params => {
+        return qs.stringify(params, { arrayFormat: "repeat" });
+      }
+    })
     .then(response => {
       const { data: events } = response;
       events.forEach(event => {
