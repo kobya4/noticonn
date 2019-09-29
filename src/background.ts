@@ -35,14 +35,14 @@ const fetchEvents = async (topics: string[]) => {
 const main = () => {
   const periodInMinutes = 1;
   const alarmName = "fetchEvents";
-  const topics = Object.keys(
-    JSON.parse(localStorage.getItem(TOPICS_STORAGE_KEY) || "{}")
-  );
 
   chrome.alarms.create(alarmName, { periodInMinutes });
 
   chrome.alarms.onAlarm.addListener(alarm => {
     if (alarm.name === alarmName) {
+      const topics = Object.keys(
+        JSON.parse(localStorage.getItem(TOPICS_STORAGE_KEY) || "{}")
+      );
       if (topics.length === 0) {
         return;
       }
