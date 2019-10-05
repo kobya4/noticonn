@@ -6,6 +6,7 @@ type Event = {
   title: string;
   url: string;
   owner: string;
+  topic: string;
   place: { lon: number; lat: number };
 };
 
@@ -18,7 +19,7 @@ const pushNotification = (event: Event) => {
     iconUrl: "icon128.png",
     type: "basic",
     title: `NotiConn`,
-    message: `<Topic>に関連するイベントが公開されました\n${event.title} by ${event.owner}\n${event.url}`
+    message: `${event.topic}に関連するイベントが公開されました\n${event.title} by ${event.owner}\n${event.url}`
   };
 
   chrome.notifications.create(event.url, options);
