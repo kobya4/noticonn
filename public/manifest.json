@@ -2,7 +2,7 @@
   "name": "NotiConn",
   "manifest_version": 2,
   "version": "1.0.1",
-  "description": "NotiConn | 登録したトピックにマッチするconnpassイベントをプッシュ通知するChrome拡張",
+  "description": "NotiConn | 興味にマッチするconnpassイベントをプッシュ通知するChrome拡張",
   "icons": {
     "16": "icon16.png",
     "48": "icon48.png",
