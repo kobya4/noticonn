@@ -3,6 +3,7 @@ import { TOPICS_STORAGE_KEY } from "./constants";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import TopicForm from "./components/TopicForm";
 import TopicList from "./components/TopicList";
+import Config from "./components/Config";
 import "./App.css";
 import "react-tabs/style/react-tabs.css";
 
@@ -72,7 +73,7 @@ const App: React.FC = () => {
             />
           </TabPanel>
           <TabPanel>
-            <h2>Any content 2</h2>
+            <Config />
           </TabPanel>
         </Tabs>
       </div>

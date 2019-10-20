@@ -1,5 +1,7 @@
 export const API_BASE_URL = process.env.API_URL;
 export const TOPICS_STORAGE_KEY = "topicsStorageKey";
+export const PREF_STORAGE_KEY = "prefStorageKey";
+export const DEFAULT_PREF_ID = "13";
 export const PREFECTURES = {
   1: "北海道",
   2: "青森県",

@@ -1,4 +1,9 @@
-import { API_BASE_URL, TOPICS_STORAGE_KEY } from "./constants";
+import {
+  API_BASE_URL,
+  TOPICS_STORAGE_KEY,
+  PREF_STORAGE_KEY,
+  DEFAULT_PREF_ID
+} from "./constants";
 import axios from "axios";
 import qs from "qs";
 
@@ -25,10 +30,10 @@ const pushNotification = (event: Event) => {
   chrome.notifications.create(event.url, options);
 };
 
-const fetchEvents = async (topics: string[]) => {
+const fetchEvents = async (topics: string[], pref: string) => {
   await axios
     .get<NotiConnAPIResponse>(`${API_BASE_URL}/events`, {
-      params: { topics },
+      params: { topics, pref },
       paramsSerializer: params => {
         return qs.stringify(params, { arrayFormat: "repeat" });
       }
@@ -54,10 +59,13 @@ const main = () => {
       const topics = Object.keys(
         JSON.parse(localStorage.getItem(TOPICS_STORAGE_KEY) || "{}")
       );
+      const pref =
+        JSON.parse(localStorage.getItem(PREF_STORAGE_KEY) || "{}").value ||
+        DEFAULT_PREF_ID;
       if (topics.length === 0) {
         return;
       }
-      fetchEvents(topics);
+      fetchEvents(topics, pref);
     }
   });
 
