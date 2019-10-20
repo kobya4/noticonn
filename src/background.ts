@@ -42,9 +42,9 @@ const fetchEvents = async (topics: string[]) => {
 };
 
 const main = () => {
-  // UTCの 1970/01/01 00:05:00 基準
-  const when = new Date(Date.UTC(70, 1)).setHours(0, 5, 0, 0);
-  const periodInMinutes = 10;
+  // UTCの 1970/01/01 00:15:00 基準
+  const when = new Date(Date.UTC(70, 1)).setHours(0, 15, 0, 0);
+  const periodInMinutes = 60;
   const alarmName = "fetchEvents";
 
   chrome.alarms.create(alarmName, { when, periodInMinutes });
