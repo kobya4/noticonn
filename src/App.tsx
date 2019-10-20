@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { TOPICS_STORAGE_KEY } from "./constants";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import TopicForm from "./components/TopicForm";
 import TopicList from "./components/TopicList";
 import "./App.css";
+import "react-tabs/style/react-tabs.css";
 
 interface Topics {
   [props: string]: any;
@@ -52,15 +54,27 @@ const App: React.FC = () => {
     <div className="App">
       <header className="App-header">NotiConn</header>
       <div className="App-body">
-        <TopicList
-          topicKeys={Object.keys(topics)}
-          onClickDelete={onClickDelete}
-        />
-        <TopicForm
-          onClickAdd={onClickAdd}
-          message={message}
-          clearMessage={clearMessage}
-        />
+        <Tabs>
+          <TabList>
+            <Tab>トピック</Tab>
+            <Tab>設定</Tab>
+          </TabList>
+
+          <TabPanel>
+            <TopicList
+              topicKeys={Object.keys(topics)}
+              onClickDelete={onClickDelete}
+            />
+            <TopicForm
+              onClickAdd={onClickAdd}
+              message={message}
+              clearMessage={clearMessage}
+            />
+          </TabPanel>
+          <TabPanel>
+            <h2>Any content 2</h2>
+          </TabPanel>
+        </Tabs>
       </div>
     </div>
   );
