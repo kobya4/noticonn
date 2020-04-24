@@ -1,8 +1,9 @@
 export const API_BASE_URL = process.env.API_URL;
 export const TOPICS_STORAGE_KEY = "topicsStorageKey";
-export const PREF_STORAGE_KEY = "prefStorageKey";
-export const DEFAULT_PREF_ID = "13";
-export const PREFECTURES = {
+export const PLACE_STORAGE_KEY = "placeStorageKey";
+export const DEFAULT_PLACE_ID = "13";
+export const PLACES = {
+  0: "リモート開催",
   1: "北海道",
   2: "青森県",
   3: "岩手県",
@@ -49,5 +50,5 @@ export const PREFECTURES = {
   44: "大分県",
   45: "宮崎県",
   46: "鹿児島県",
-  47: "沖縄県"
+  47: "沖縄県",
 };

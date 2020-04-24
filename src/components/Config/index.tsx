@@ -1,19 +1,19 @@
 import React from "react";
 import Dropdown from "react-dropdown";
-import { PREFECTURES, PREF_STORAGE_KEY } from "../../constants";
+import { PLACES, PLACE_STORAGE_KEY } from "../../constants";
 import "./style.css";
 import "react-dropdown/style.css";
 
 const Config: React.FC = () => {
-  const options = Object.entries(PREFECTURES).map(([key, value]) => {
+  const options = Object.entries(PLACES).map(([key, value]) => {
     return { value: key, label: value };
   });
-  const currentPref = JSON.parse(
-    localStorage.getItem(PREF_STORAGE_KEY) || "{}"
+  const currentPlace = JSON.parse(
+    localStorage.getItem(PLACE_STORAGE_KEY) || "{}"
   );
 
-  const onChange = (pref: Object) => {
-    localStorage.setItem(PREF_STORAGE_KEY, JSON.stringify(pref));
+  const onChange = (place: Object) => {
+    localStorage.setItem(PLACE_STORAGE_KEY, JSON.stringify(place));
   };
 
   return (
@@ -23,7 +23,7 @@ const Config: React.FC = () => {
         options={options}
         onChange={e => onChange(e)}
         value={
-          Object.keys(currentPref).length === 0 ? options[12] : currentPref
+          Object.keys(currentPlace).length === 0 ? options[13] : currentPlace
         }
       />
     </div>
