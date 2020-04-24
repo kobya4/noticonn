@@ -23,7 +23,7 @@ const Config: React.FC = () => {
         options={options}
         onChange={e => onChange(e)}
         value={
-          Object.keys(currentPlace).length === 0 ? options[13] : currentPlace
+          Object.keys(currentPlace).length === 0 ? options[0] : currentPlace
         }
       />
     </div>

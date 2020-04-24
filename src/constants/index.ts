@@ -1,7 +1,7 @@
 export const API_BASE_URL = process.env.API_URL;
 export const TOPICS_STORAGE_KEY = "topicsStorageKey";
 export const PLACE_STORAGE_KEY = "placeStorageKey";
-export const DEFAULT_PLACE_ID = "13";
+export const DEFAULT_PLACE_ID = "0";
 export const PLACES = {
   0: "リモート開催",
   1: "北海道",
