@@ -1,7 +1,7 @@
 {
   "name": "NotiConn",
   "manifest_version": 2,
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "興味にマッチするconnpassイベントをプッシュ通知するChrome拡張",
   "icons": {
     "16": "icon16.png",
