@@ -35,7 +35,7 @@ const saveEvents = (events: Array<Event>) => {
 const fetchEvents = async (topics: string[], place: string) => {
   await axios
     .get<NotiConnAPIResponse>(`${API_BASE_URL}/events`, {
-      params: { topics, place },
+      params: { topics, pref: place },
       paramsSerializer: params => {
         return qs.stringify(params, { arrayFormat: "repeat" });
       },
