@@ -2,19 +2,12 @@ import {
   API_BASE_URL,
   TOPICS_STORAGE_KEY,
   PLACE_STORAGE_KEY,
+  EVENTS_STORAGE_KEY,
   DEFAULT_PLACE_ID,
 } from "./constants";
 import axios from "axios";
 import qs from "qs";
-
-type Event = {
-  title: string;
-  url: string;
-  owner: string;
-  topic: string;
-  place: { lon: number; lat: number };
-};
-
+import { Event } from "./model/event";
 type NotiConnAPIResponse = {
   message: Array<Event>;
 };
@@ -30,6 +23,15 @@ const pushNotification = (event: Event) => {
   chrome.notifications.create(event.url, options);
 };
 
+const saveEvents = (events: Array<Event>) => {
+  if (events.length === 0) {
+    return;
+  }
+
+  events.splice(10);
+  localStorage.setItem(EVENTS_STORAGE_KEY, JSON.stringify(events));
+};
+
 const fetchEvents = async (topics: string[], place: string) => {
   await axios
     .get<NotiConnAPIResponse>(`${API_BASE_URL}/events`, {
@@ -40,6 +42,7 @@ const fetchEvents = async (topics: string[], place: string) => {
     })
     .then(response => {
       const { data: events } = response;
+      saveEvents(events.message);
       events.message.forEach(event => {
         pushNotification(event);
       });

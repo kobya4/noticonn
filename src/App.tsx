@@ -3,6 +3,7 @@ import { TOPICS_STORAGE_KEY } from "./constants";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import TopicForm from "./components/TopicForm";
 import TopicList from "./components/TopicList";
+import History from "./components/History";
 import Config from "./components/Config";
 import "./App.css";
 import "react-tabs/style/react-tabs.css";
@@ -58,7 +59,8 @@ const App: React.FC = () => {
         <Tabs>
           <TabList>
             <Tab>トピック</Tab>
-            <Tab>設定</Tab>
+            <Tab>最近のイベント</Tab>
+            <Tab>通知設定</Tab>
           </TabList>
 
           <TabPanel>
@@ -71,6 +73,9 @@ const App: React.FC = () => {
               message={message}
               clearMessage={clearMessage}
             />
+          </TabPanel>
+          <TabPanel>
+            <History></History>
           </TabPanel>
           <TabPanel>
             <Config />
